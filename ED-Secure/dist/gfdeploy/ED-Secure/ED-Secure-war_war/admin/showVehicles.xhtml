@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:c="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>vehicles Details</title>
+    </h:head>
+    <h:body>
+
+        <h2>Booking Page</h2>
+
+        <h:form>
+            <table>
+                <tbody>
+
+                    <tr>
+                        <h:commandButton id="click" value="Get Vehicles" 
+                                         action="#{myVHSManagedBean.showVehiclesFromDb()}"/>
+                    </tr>
+                    <tr>
+                        <h:dataTable value="#{myVHSManagedBean.showVehicles}" var="vehicle" border="2"
+                                     cellspacing="1" cellpadding="1">
+                            <h:column>
+                                <c:facet name="header">Vehicle Number</c:facet>
+                                    #{vehicle.vehicleNumber}
+                            </h:column>
+                            <h:column>
+                                <c:facet name="header">Model Name</c:facet>
+                                    #{vehicle.vehicleName}
+                            </h:column>
+                            <h:column>
+                                <c:facet name="header">Vehicle Type</c:facet>
+                                    #{vehicle.vehicleType}
+                            </h:column>
+                            <h:column>
+                                <c:facet name="header">Fuel Type</c:facet>
+                                    #{vehicle.fuelType}
+                            </h:column>
+                            <h:column>
+                                <c:facet name="header">Registration Year</c:facet>
+                                    #{vehicle.registrationYear}
+                            </h:column>
+
+                        </h:dataTable>
+
+                    </tr>
+                </tbody>
+            </table>
+
+            <h:panelGrid columns="2">
+
+                <h:outputLabel value="Customer Id:"/>
+                <h:inputText title="CustomerId" id="customerId"
+                             maxlength="8" 
+                             value="#{myVHSManagedBean.customerId}">
+                </h:inputText>
+                <h:outputLabel value="Vehicle Number:"/>
+                <h:inputText title="vehicleNumber" id="vehicleNumber"
+                             maxlength="8" 
+                             value="#{myVHSManagedBean.vehicleNumber}">
+                </h:inputText>
+                <h:outputLabel value="Preferred Date (in dd-MM-yyyy format):"/>
+                <h:inputText title="preferredDate" id="bookingDate"
+                             value="#{myVHSManagedBean.bookingDate}">
+                </h:inputText>
+                <h:outputLabel value="Preferred Time (in 24 hour format):"/>
+                <h:inputText title="preferredTime" id="bookingTime"
+                             value="#{myVHSManagedBean.bookingTime}">
+
+                </h:inputText>
+                <h:outputLabel value="Hire Duration:"/>
+                <h:inputText title="preferredTime" id="hireDuration"
+                             value="#{myVHSManagedBean.hireDuration}">
+                </h:inputText>
+                <h:outputLabel value="Pickup Location:"/>
+                <h:inputText title="pickupLocation" id="pickupLocation"
+                             maxlength="8" 
+                             value="#{myVHSManagedBean.pickupLocation}">
+                </h:inputText>
+
+            </h:panelGrid>
+
+            <h:panelGrid columns="2">
+
+                <h:commandButton id="bookReservation" value="Book Vehicle" action="#{myVHSManagedBean.reserveVehicle()}"/>
+                <h:outputText title="bookingResult" value="#{myVHSManagedBean.bookingResponse}"/>
+
+            </h:panelGrid>
+            <h:commandButton value="Back" action="mainmenu.xhtml"/>!
+
+        </h:form>
+    </h:body>
+</html>
+
+
+
+
+

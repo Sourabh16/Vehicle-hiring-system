@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:c="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Overdue and return vehicle</title>
+    </h:head>
+    <h:body>
+
+        <h2>Overdue and return Page</h2>
+
+        <h:form>
+            
+            
+            <h:panelGrid columns="3">
+
+                <h:commandButton id="getOverDue" value="Overdue vehicles" 
+                                 action="#{myVHSManagedBean.showNotReturnedVehicles()}"/>
+            </h:panelGrid>
+
+            <table>
+                <tbody>
+                    <tr>
+                        <h:dataTable value="#{myVHSManagedBean.overdueVehicles}" var="overDueVehicles" border="2"
+                                     cellspacing="1" cellpadding="1">
+                            <h:column>
+                                <c:facet name="header">Booking Id</c:facet>
+                                    #{overDueVehicles.bookingId}
+                            </h:column>
+                            <h:column>
+                                <c:facet name="header">Date of Reservation</c:facet>
+                                    #{overDueVehicles.bookingDate}
+                            </h:column>
+                            <h:column>
+                                <c:facet name="header">Reservation Time</c:facet>
+                                    #{overDueVehicles.bookingTime}
+                            </h:column>
+                            <h:column>
+                                <c:facet name="header">Pickup Location</c:facet>
+                                    #{overDueVehicles.pickupLocation}
+                            </h:column>
+                            <h:column>
+                                <c:facet name="header">Reservation Duration</c:facet>
+                                    #{overDueVehicles.hireduration}
+                            </h:column>
+                            <h:column>
+                                <c:facet name="header">Vehicle details</c:facet>
+                                    #{overDueVehicles.vehicleDetails}
+                            </h:column>
+                            <h:column>
+                                <c:facet name="header">Customer details</c:facet>
+                                    #{overDueVehicles.customerDetails}
+                            </h:column>
+
+
+                        </h:dataTable>
+
+                    </tr>
+                </tbody>
+            </table>
+
+            
+            <h:panelGrid columns="2">
+
+                <h:outputLabel value="Booking Id:"/>
+                <h:inputText title="bookingId" id="bookingId"
+                             maxlength="8" 
+                             value="#{myVHSManagedBean.bookingId}">
+                </h:inputText>
+                
+                <h:outputLabel value="Customer Id:"/>
+                <h:inputText title="customerId" id="customerId"
+                             maxlength="8" 
+                             value="#{myVHSManagedBean.customerId}">
+                </h:inputText>
+                <h:outputLabel value="Confirm return? (type y/n):"/>
+                <h:inputText title="confirmReturn" id="confirmReturn"
+                             maxlength="8" 
+                             value="#{myVHSManagedBean.confirmReturn}">
+                </h:inputText>
+
+                <h:commandButton id="checkBooking" value="return vehicle" 
+                                 action="#{myVHSManagedBean.returnVehicle()}"/>
+            </h:panelGrid>
+
+            <h:panelGrid columns="2">
+            <h:outputText title="bookingResult" value="#{myVHSManagedBean.bookingResponse}"/>
+            </h:panelGrid>
+            <h:commandButton value="Back" action="mainmenu.xhtml"/>!
+        </h:form>
+    </h:body>
+</html>
+
+
+
+
+

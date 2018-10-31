@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:c="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Vehicle Hiring Details</title>
+    </h:head>
+    <h:body>
+
+        <h2>Vehicle Hiring records Page</h2>
+
+        <h:form>
+            
+            <h:panelGrid columns="3">
+                
+                <h:outputLabel value="Vehicle Number:"/>
+                <h:inputText title="vehicleNumber" id="vehicleNumber"
+                             maxlength="8" 
+                             value="#{myVHSManagedBean.vehicleNumber}">
+                </h:inputText>
+
+                <h:commandButton id="checkRecords" value="Check Records" 
+                                 action="#{myVHSManagedBean.showVehicleReservations()}"/>
+
+                
+            </h:panelGrid>
+            
+            <table>
+                <tbody>
+                    <tr>
+                        <h:dataTable value="#{myVHSManagedBean.vehicleReservations}" var="vehicleReservations" border="2"
+                                     cellspacing="1" cellpadding="1">
+                            <h:column>
+                                <c:facet name="header">Date of Reservation</c:facet>
+                                    #{vehicleReservations.bookingDate}
+                            </h:column>
+                            <h:column>
+                                <c:facet name="header">Reservation Time</c:facet>
+                                    #{vehicleReservations.bookingTime}
+                            </h:column>
+                            <h:column>
+                                <c:facet name="header">Pickup Location</c:facet>
+                                    #{vehicleReservations.pickupLocation}
+                            </h:column>
+                            <h:column>
+                                <c:facet name="header">Reservation Duration</c:facet>
+                                    #{vehicleReservations.hireduration}
+                            </h:column>
+                            <h:column>
+                                <c:facet name="header">Vehicle details</c:facet>
+                                    #{vehicleReservations.vehicleDetails}
+                            </h:column>
+                            <h:column>
+                                <c:facet name="header">Customer details</c:facet>
+                                    #{vehicleReservations.customerDetails}
+                            </h:column>
+
+                        </h:dataTable>
+
+                    </tr>
+                </tbody>
+            </table>
+
+            <h:panelGrid columns="2">
+
+                <h:outputText title="bookingResult" value="#{myVHSManagedBean.bookingResponse}"/>
+
+            </h:panelGrid>
+            <h:commandButton value="Back" action="mainmenu.xhtml"/>!
+
+        </h:form>
+    </h:body>
+</html>
+
+
+
+
+
